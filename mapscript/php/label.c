@@ -159,15 +159,16 @@ PHP_METHOD(labelObj, __get)
                                                   else IF_GET_LONG("outlinewidth", php_label->label->outlinewidth)
                                                     else IF_GET_LONG("align", php_label->label->align)
                                                       else IF_GET_LONG("maxlength", php_label->label->maxlength)
-                                                        else IF_GET_LONG("maxoverlapangle", php_label->label->maxoverlapangle)
-                                                          else IF_GET_LONG("priority", php_label->label->priority)
-                                                            else IF_GET_OBJECT("color", mapscript_ce_color, php_label->color, &php_label->label->color)
-                                                              else IF_GET_OBJECT("leader", mapscript_ce_labelleader, php_label->leader, php_label->label->leader)
-                                                                else IF_GET_OBJECT("outlinecolor", mapscript_ce_color, php_label->outlinecolor, &php_label->label->outlinecolor)
-                                                                  else IF_GET_OBJECT("shadowcolor", mapscript_ce_color, php_label->shadowcolor, &php_label->label->shadowcolor)
-                                                                    else {
-                                                                      mapscript_throw_exception("Property '%s' does not exist in this object." TSRMLS_CC, property);
-                                                                    }
+                                                        else IF_GET_LONG("minlength", php_label->label->minlength)
+                                                          else IF_GET_LONG("maxoverlapangle", php_label->label->maxoverlapangle)
+                                                            else IF_GET_LONG("priority", php_label->label->priority)
+                                                              else IF_GET_OBJECT("color", mapscript_ce_color, php_label->color, &php_label->label->color)
+                                                                else IF_GET_OBJECT("leader", mapscript_ce_labelleader, php_label->leader, php_label->label->leader)
+                                                                  else IF_GET_OBJECT("outlinecolor", mapscript_ce_color, php_label->outlinecolor, &php_label->label->outlinecolor)
+                                                                    else IF_GET_OBJECT("shadowcolor", mapscript_ce_color, php_label->shadowcolor, &php_label->label->shadowcolor)
+                                                                      else {
+                                                                        mapscript_throw_exception("Property '%s' does not exist in this object." TSRMLS_CC, property);
+                                                                      }
 }
 
 PHP_METHOD(labelObj, __set)
@@ -211,20 +212,21 @@ PHP_METHOD(labelObj, __set)
                                             else IF_SET_LONG("outlinewidth", php_label->label->outlinewidth, value)
                                               else IF_SET_LONG("align", php_label->label->align, value)
                                                 else IF_SET_LONG("maxlength", php_label->label->maxlength, value)
-                                                  else IF_SET_LONG("maxoverlapangle", php_label->label->maxoverlapangle, value)
-                                                    else IF_SET_LONG("priority", php_label->label->priority, value)
-                                                      else IF_SET_DOUBLE("maxscaledenom", php_label->label->maxscaledenom, value)
-                                                        else IF_SET_DOUBLE("minscaledenom", php_label->label->minscaledenom, value)
-                                                          else if ( (STRING_EQUAL("color", property)) ||
-                                                                    (STRING_EQUAL("outlinecolor", property)) ||
-                                                                    (STRING_EQUAL("leader", property)) ||
-                                                                    (STRING_EQUAL("shadowcolor", property)) ) {
-                                                            mapscript_throw_exception("Property '%s' is an object and can only be modified through its accessors." TSRMLS_CC, property);
-                                                          } else if (STRING_EQUAL("numstyles", property)) {
-                                                            mapscript_throw_exception("Property '%s' is read-only and cannot be set." TSRMLS_CC, property);
-                                                          } else {
-                                                            mapscript_throw_exception("Property '%s' does not exist in this object." TSRMLS_CC, property);
-                                                          }
+                                                  else IF_SET_LONG("minlength", php_label->label->minlength, value)
+                                                    else IF_SET_LONG("maxoverlapangle", php_label->label->maxoverlapangle, value)
+                                                      else IF_SET_LONG("priority", php_label->label->priority, value)
+                                                        else IF_SET_DOUBLE("maxscaledenom", php_label->label->maxscaledenom, value)
+                                                          else IF_SET_DOUBLE("minscaledenom", php_label->label->minscaledenom, value)
+                                                            else if ( (STRING_EQUAL("color", property)) ||
+                                                                      (STRING_EQUAL("outlinecolor", property)) ||
+                                                                      (STRING_EQUAL("leader", property)) ||
+                                                                      (STRING_EQUAL("shadowcolor", property)) ) {
+                                                              mapscript_throw_exception("Property '%s' is an object and can only be modified through its accessors." TSRMLS_CC, property);
+                                                            } else if (STRING_EQUAL("numstyles", property)) {
+                                                              mapscript_throw_exception("Property '%s' is read-only and cannot be set." TSRMLS_CC, property);
+                                                            } else {
+                                                              mapscript_throw_exception("Property '%s' does not exist in this object." TSRMLS_CC, property);
+                                                            }
 
 }
 
@@ -697,12 +699,12 @@ PHP_METHOD(labelObj, getTextString)
 /* }}} */
 
 zend_function_entry label_functions[] = {
-  PHP_ME(labelObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(labelObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(labelObj, __get, label___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, __set, label___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(labelObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(labelObj, set, __set, label___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, updateFromString, label_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(labelObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(labelObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, setBinding, label_setBinding_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, getBinding, label_getBinding_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, removeBinding, label_removeBinding_args, ZEND_ACC_PUBLIC)
@@ -713,10 +715,10 @@ zend_function_entry label_functions[] = {
   PHP_ME(labelObj, moveStyleDown, label_moveStyleDown_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, deleteStyle, label_deleteStyle_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, setExpression, label_setExpression_args, ZEND_ACC_PUBLIC)
-  PHP_ME(labelObj, getExpressionString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(labelObj, getExpressionString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelObj, setText, label_setText_args, ZEND_ACC_PUBLIC)
-  PHP_ME(labelObj, getTextString, NULL, ZEND_ACC_PUBLIC)  
-  PHP_ME(labelObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(labelObj, getTextString, no_args, ZEND_ACC_PUBLIC)  
+  PHP_ME(labelObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -779,6 +781,23 @@ static void mapscript_label_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_label_clone_object(zend_object *zobj_old)
+{
+  php_label_object *php_label_old, *php_label_new;
+  zend_object* zobj_new;
+
+  php_label_old = MAPSCRIPT_OBJ_Z(php_label_object, zobj_old);
+
+  zobj_new = mapscript_label_create_object(mapscript_ce_label);
+  php_label_new = MAPSCRIPT_OBJ_Z(php_label_object, zobj_new);
+
+  php_label_new->label = labelObj_clone(php_label_old->label);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_label_clone_object(zval *zobj)
 {
   php_label_object *php_label_old, *php_label_new;
@@ -793,6 +812,7 @@ static zend_object* mapscript_label_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(label)
 {

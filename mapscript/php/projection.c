@@ -110,7 +110,7 @@ PHP_METHOD(projectionObj, getUnits)
 zend_function_entry projection_functions[] = {
   PHP_ME(projectionObj, __construct, projection___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(projectionObj, setWKTProjection, projection_setWKTProjection_args, ZEND_ACC_PUBLIC)
-  PHP_ME(projectionObj, getUnits, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(projectionObj, getUnits, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -164,6 +164,25 @@ static void mapscript_projection_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_projection_clone_object(zend_object *zobj_old)
+{
+  php_projection_object *php_projection_old, *php_projection_new;
+  zend_object* zobj_new;
+
+  php_projection_old = MAPSCRIPT_OBJ_Z(php_projection_object, zobj_old);
+
+  zobj_new = mapscript_projection_create_object(mapscript_ce_projection);
+  php_projection_new = MAPSCRIPT_OBJ_Z(php_projection_object, zobj_new);
+
+  zend_objects_clone_members(&php_projection_new->zobj, &php_projection_old->zobj);
+
+  php_projection_new->projection = projectionObj_clone(php_projection_old->projection);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_projection_clone_object(zval *zobj)
 {
   php_projection_object *php_projection_old, *php_projection_new;
@@ -180,6 +199,7 @@ static zend_object* mapscript_projection_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(projection)
 {

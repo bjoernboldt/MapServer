@@ -219,13 +219,13 @@ PHP_METHOD(webObj, free)
 /* }}} */
 
 zend_function_entry web_functions[] = {
-  PHP_ME(webObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(webObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(webObj, __get, web___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(webObj, __set, web___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(webObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(webObj, set, __set, web___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(webObj, updateFromString, web_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(webObj, convertToString, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(webObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(webObj, convertToString, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(webObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

@@ -252,13 +252,13 @@ PHP_METHOD(hashtableObj, nextKey)
 /* }}} */
 
 zend_function_entry hashtable_functions[] = {
-  PHP_ME(hashtableObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(hashtableObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(hashtableObj, __get, hashtable___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(hashtableObj, __set, hashtable___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(hashtableObj, get, hashtable_get_args, ZEND_ACC_PUBLIC)
   PHP_ME(hashtableObj, set, hashtable_set_args, ZEND_ACC_PUBLIC)
   PHP_ME(hashtableObj, remove, hashtable_remove_args, ZEND_ACC_PUBLIC)
-  PHP_ME(hashtableObj, clear, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(hashtableObj, clear, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(hashtableObj, nextKey, hashtable_nextkey_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }

@@ -326,11 +326,11 @@ PHP_METHOD(imageObj, saveImage)
 /* }}} */
 
 zend_function_entry image_functions[] = {
-  PHP_ME(imageObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(imageObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(imageObj, __get, image___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(imageObj, __set, image___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(imageObj, set, __set, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(imageObj, saveWebImage, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(imageObj, set, __set, image___set_args, ZEND_ACC_PUBLIC)
+  PHP_ME(imageObj, saveWebImage, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(imageObj, pasteImage, image_pasteImage_args, ZEND_ACC_PUBLIC)
   PHP_ME(imageObj, saveImage, image_saveImage_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL

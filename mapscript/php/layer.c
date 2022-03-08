@@ -1303,7 +1303,7 @@ PHP_METHOD(layerObj, setExtent)
     return;
   }
 
-  RETURN_LONG(msLayerSetExtent(php_layer->layer, minx, miny, maxx, maxy))
+  RETURN_LONG(msLayerSetExtent(php_layer->layer, minx, miny, maxx, maxy));
 }
 /* }}} */
 
@@ -1361,7 +1361,7 @@ PHP_METHOD(layerObj, getMetaData)
 #if PHP_VERSION_ID < 70000
   RETURN_STRING(Z_STRVAL_P(retval),1);
 #else
-  RETURN_STRING(Z_STRVAL(retval))
+  RETURN_STRING(Z_STRVAL(retval));
 #endif
 }
 /* }}} */
@@ -2182,11 +2182,11 @@ zend_function_entry layer_functions[] = {
   PHP_ME(layerObj, __construct, layer___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(layerObj, __get, layer___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, __set, layer___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(layerObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(layerObj, set, __set, layer___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, draw, layer_draw_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, drawQuery, layer_drawQuery_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, updateFromString, layer_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getClass, layer_getClass_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getClassIndex, layer_getClassIndex_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, queryByPoint, layer_queryByPoint_args, ZEND_ACC_PUBLIC)
@@ -2197,43 +2197,43 @@ zend_function_entry layer_functions[] = {
   PHP_ME(layerObj, queryByFilter, layer_queryByFilter_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, queryByIndex, layer_queryByIndex_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setFilter, layer_setFilter_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getFilterString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getFilterString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setProjection, layer_setProjection_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getProjection, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getProjection, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setWKTProjection, layer_setWKTProjection_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getNumResults, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getResultsBounds, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getNumResults, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getResultsBounds, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getResult, layer_getResult_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, open, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, open, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, whichShapes, layer_whichShapes_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, nextShape, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, close, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getExtent, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, nextShape, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, close, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getExtent, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setExtent, layer_setExtent_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, addFeature, layer_addFeature_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getMetaData, layer_getMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setMetaData, layer_setMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, removeMetaData, layer_removeMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getWMSFeatureInfoURL, layer_getWMSFeatureInfoURL_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getItems, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getItems, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setProcessing, layer_setProcessing_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setProcessingKey, layer_setProcessingKey_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getProcessing, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, clearProcessing, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, executeWFSGetFeature, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getProcessing, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, clearProcessing, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, executeWFSGetFeature, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, applySLD, layer_applySLD_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, applySLDURL, layer_applySLDURL_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, generateSLD, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, generateSLD, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, moveClassUp, layer_moveClassUp_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, moveClassDown, layer_moveClassDown_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, removeClass, layer_removeClass_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, isVisible, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, isVisible, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setConnectionType, layer_setConnectionType_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getGridIntersectionCoordinates, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getGridIntersectionCoordinates, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, getShape, layer_getShape_args, ZEND_ACC_PUBLIC)
-  PHP_ME(layerObj, getGeomTransform, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(layerObj, getGeomTransform, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(layerObj, setGeomTransform, layer_setGeomTransform_args, ZEND_ACC_PUBLIC)  
-  PHP_ME(layerObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(layerObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -2311,6 +2311,25 @@ static void mapscript_layer_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_layer_clone_object(zend_object *zobj_old)
+{
+  php_layer_object *php_layer_old, *php_layer_new;
+  zend_object* zobj_new;
+
+  php_layer_old = MAPSCRIPT_OBJ_Z(php_layer_object, zobj_old);
+
+  zobj_new = mapscript_layer_create_object(mapscript_ce_layer);
+  php_layer_new = MAPSCRIPT_OBJ_Z(php_layer_object, zobj_new);
+
+  zend_objects_clone_members(&php_layer_new->zobj, &php_layer_old->zobj);
+
+  php_layer_new->layer = layerObj_clone(php_layer_old->layer);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_layer_clone_object(zval *zobj)
 {
   php_layer_object *php_layer_old, *php_layer_new;
@@ -2327,6 +2346,7 @@ static zend_object* mapscript_layer_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(layer)
 {

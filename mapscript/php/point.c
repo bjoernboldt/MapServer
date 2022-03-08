@@ -383,7 +383,7 @@ PHP_METHOD(pointObj, draw)
 /* }}} */
 
 zend_function_entry point_functions[] = {
-  PHP_ME(pointObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(pointObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(pointObj, __get, point___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(pointObj, __set, point___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(pointObj, setXY, point_setXY_args, ZEND_ACC_PUBLIC)
@@ -447,6 +447,29 @@ static void mapscript_point_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_point_clone_object(zend_object *zobj_old)
+{
+  php_point_object *php_point_old, *php_point_new;
+  zend_object* zobj_new;
+
+  php_point_old = MAPSCRIPT_OBJ_Z(php_point_object, zobj_old);
+
+  zobj_new = mapscript_point_create_object(mapscript_ce_point);
+  php_point_new = MAPSCRIPT_OBJ_Z(php_point_object, zobj_new);
+
+  zend_objects_clone_members(&php_point_new->zobj, &php_point_old->zobj);
+
+  if ((php_point_new->point = pointObj_new()) == NULL) {
+    mapscript_throw_exception("Unable to construct pointObj." TSRMLS_CC);
+    return NULL;
+  }
+  memcpy(php_point_new->point, php_point_old->point, sizeof(pointObj));
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_point_clone_object(zval *zobj)
 {
   php_point_object *php_point_old, *php_point_new;
@@ -467,6 +490,7 @@ static zend_object* mapscript_point_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(point)
 {

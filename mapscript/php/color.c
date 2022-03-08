@@ -223,7 +223,7 @@ PHP_METHOD(colorObj, toHex)
 /* }}} */
 
 zend_function_entry color_functions[] = {
-  PHP_ME(colorObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(colorObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(colorObj, __get, color___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(colorObj, __set, color___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(colorObj, setRGB, color_setRGB_args, ZEND_ACC_PUBLIC)

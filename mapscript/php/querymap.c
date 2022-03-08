@@ -192,13 +192,13 @@ PHP_METHOD(queryMapObj, free)
 /* }}} */
 
 zend_function_entry querymap_functions[] = {
-  PHP_ME(queryMapObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(queryMapObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(queryMapObj, __get, querymap___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(queryMapObj, __set, querymap___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(queryMapObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(queryMapObj, set, __set, querymap___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(queryMapObj, updateFromString, querymap_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(queryMapObj, convertToString, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(queryMapObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(queryMapObj, convertToString, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(queryMapObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

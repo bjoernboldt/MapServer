@@ -408,7 +408,7 @@ zend_function_entry shapefile_functions[] = {
   PHP_ME(shapeFileObj, addShape, shapefile_addShape_args, ZEND_ACC_PUBLIC)
   PHP_ME(shapeFileObj, addPoint, shapefile_addPoint_args, ZEND_ACC_PUBLIC)
   PHP_ME(shapeFileObj, getTransformed, shapefile_getTransformed_args, ZEND_ACC_PUBLIC)
-  PHP_ME(shapeFileObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(shapeFileObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

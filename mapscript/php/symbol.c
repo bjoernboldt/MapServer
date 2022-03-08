@@ -373,9 +373,9 @@ zend_function_entry symbol_functions[] = {
   PHP_ME(symbolObj, __construct, symbol___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(symbolObj, __get, symbol___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(symbolObj, __set, symbol___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(symbolObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(symbolObj, set, __set, symbol___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(symbolObj, setPoints, symbol_setPoints_args, ZEND_ACC_PUBLIC)
-  PHP_ME(symbolObj, getPointsArray, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(symbolObj, getPointsArray, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(symbolObj, setImage, symbol_setImage_args, ZEND_ACC_PUBLIC)
   PHP_ME(symbolObj, getImage, symbol_getImage_args, ZEND_ACC_PUBLIC)
   PHP_ME(symbolObj, setImagePath, symbol_setImagePath_args, ZEND_ACC_PUBLIC) {

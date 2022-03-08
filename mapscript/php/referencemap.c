@@ -208,13 +208,13 @@ PHP_METHOD(referenceMapObj, free)
 /* }}} */
 
 zend_function_entry referencemap_functions[] = {
-  PHP_ME(referenceMapObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(referenceMapObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(referenceMapObj, __get, referenceMap___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(referenceMapObj, __set, referenceMap___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(referenceMapObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(referenceMapObj, set, __set, referenceMap___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(referenceMapObj, updateFromString, referenceMap_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(referenceMapObj, convertToString, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(referenceMapObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(referenceMapObj, convertToString, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(referenceMapObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

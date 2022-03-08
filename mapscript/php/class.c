@@ -886,16 +886,16 @@ zend_function_entry class_functions[] = {
   PHP_ME(classObj, __construct, class___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(classObj, __get, class___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, __set, class___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(classObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(classObj, set, __set, class___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, addLabel, class_addLabel_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, removeLabel, class_removeLabel_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, getLabel, class_getLabel_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, updateFromString, class_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(classObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(classObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, setExpression, class_setExpression_args, ZEND_ACC_PUBLIC)
-  PHP_ME(classObj, getExpressionString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(classObj, getExpressionString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, setText, class_setText_args, ZEND_ACC_PUBLIC)
-  PHP_ME(classObj, getTextString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(classObj, getTextString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, getStyle, class_getStyle_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, insertStyle, class_insertStyle_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, removeStyle, class_removeStyle_args, ZEND_ACC_PUBLIC)
@@ -907,7 +907,7 @@ zend_function_entry class_functions[] = {
   PHP_ME(classObj, removeMetaData, class_removeMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, createLegendIcon, class_createLegendIcon_args, ZEND_ACC_PUBLIC)
   PHP_ME(classObj, drawLegendIcon, class_drawLegendIcon_args, ZEND_ACC_PUBLIC)
-  PHP_ME(classObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(classObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -959,6 +959,27 @@ static void mapscript_class_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_class_clone_object(zend_object *zobj_old)
+{
+  php_class_object *php_class_old, *php_class_new;
+  php_layer_object *php_layer;
+  zend_object* zobj_new;
+
+  php_class_old = MAPSCRIPT_OBJ_Z(php_class_object, zobj_old);
+  php_layer = MAPSCRIPT_OBJ(php_layer_object, php_class_old->parent.val);
+
+  zobj_new = mapscript_class_create_object(mapscript_ce_class);
+  php_class_new = MAPSCRIPT_OBJ_Z(php_class_object, zobj_new);
+
+  zend_objects_clone_members(&php_class_new->zobj, &php_class_old->zobj);
+
+  php_class_new->class = classObj_clone(php_class_old->class, php_layer->layer);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_class_clone_object(zval *zobj)
 {
   php_class_object *php_class_old, *php_class_new;
@@ -977,6 +998,7 @@ static zend_object* mapscript_class_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(class)
 {

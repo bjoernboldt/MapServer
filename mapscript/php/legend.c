@@ -210,11 +210,11 @@ PHP_METHOD(legendObj, free)
 /* }}} */
 
 zend_function_entry legend_functions[] = {
-  PHP_ME(legendObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(legendObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(legendObj, __get, legend___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(legendObj, __set, legend___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(legendObj, set, __set, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(legendObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(legendObj, set, __set, legend___set_args, ZEND_ACC_PUBLIC)
+  PHP_ME(legendObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(legendObj, updateFromString, legend_updateFromString_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }

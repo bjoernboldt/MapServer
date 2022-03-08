@@ -249,14 +249,14 @@ PHP_METHOD(scalebarObj, free)
 /* }}} */
 
 zend_function_entry scalebar_functions[] = {
-  PHP_ME(scalebarObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(scalebarObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(scalebarObj, __get, scalebar___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(scalebarObj, __set, scalebar___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(scalebarObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(scalebarObj, set, __set, scalebar___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(scalebarObj, updateFromString, scalebar_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(scalebarObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(scalebarObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(scalebarObj, setImageColor, scalebar_setImageColor_args, ZEND_ACC_PUBLIC)
-  PHP_ME(scalebarObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(scalebarObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

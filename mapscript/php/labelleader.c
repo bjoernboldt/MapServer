@@ -98,7 +98,7 @@ PHP_METHOD(labelLeaderObj, __set)
 }
 
 zend_function_entry labelleader_functions[] = {
-  PHP_ME(labelLeaderObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(labelLeaderObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(labelLeaderObj, __get, labelleader___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(labelLeaderObj, __set, labelleader___set_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL

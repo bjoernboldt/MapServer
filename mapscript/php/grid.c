@@ -171,7 +171,7 @@ zend_function_entry grid_functions[] = {
   PHP_ME(gridObj, __construct, grid___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(gridObj, __get, grid___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(gridObj, __set, grid___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(gridObj, set, __set, NULL, ZEND_ACC_PUBLIC) {
+  PHP_MALIAS(gridObj, set, __set, grid___set_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

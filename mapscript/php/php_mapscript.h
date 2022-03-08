@@ -61,7 +61,18 @@
 
 #define MAPSCRIPT_VERSION "($Revision$ $Date$)"
 
-#define MAPSCRIPT_VERSION "($Revision$ $Date$)"
+//PHP8
+#if PHP_VERSION_ID >= 80000
+#define MAPSCRIPT_OBJ_Z(t, o) (t *)((char *)o - XtOffsetOf(t, zobj))
+
+#ifndef TSRMLS_CC
+#define TSRMLS_D  void
+#define TSRMLS_DC
+#define TSRMLS_C
+#define TSRMLS_CC
+#define TSRMLS_FETCH_FROM_CTX(ctx)
+#endif
+#endif
 
 #if PHP_VERSION_ID >= 70000
 #define MAPSCRIPT_ZVAL zval
@@ -1172,5 +1183,8 @@ void  outputFormatObj_destroy(outputFormatObj* self);
 
 int symbolObj_setImage(symbolObj *self, imageObj *image);
 imageObj *symbolObj_getImage(symbolObj *self, outputFormatObj *input_format);
+
+ZEND_BEGIN_ARG_INFO_EX(no_args, 0, 0, 0)
+ZEND_END_ARG_INFO()
 
 #endif /* PHP_MAPSCRIPT_H */

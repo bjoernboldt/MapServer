@@ -289,15 +289,15 @@ PHP_METHOD(clusterObj, getFilterString)
 /* }}} */
 
 zend_function_entry cluster_functions[] = {
-  PHP_ME(clusterObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(clusterObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(clusterObj, __get, cluster___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(clusterObj, __set, cluster___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(clusterObj, updateFromString, cluster_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(clusterObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(clusterObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(clusterObj, setGroup, cluster_setGroup_args, ZEND_ACC_PUBLIC)
-  PHP_ME(clusterObj, getGroupString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(clusterObj, getGroupString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(clusterObj, setFilter, cluster_setFilter_args, ZEND_ACC_PUBLIC)
-  PHP_ME(clusterObj, getFilterString, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(clusterObj, getFilterString, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

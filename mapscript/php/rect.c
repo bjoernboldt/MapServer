@@ -303,11 +303,11 @@ PHP_METHOD(rectObj, getCenter)
 /* }}} */
 
 zend_function_entry rect_functions[] = {
-  PHP_ME(rectObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-  PHP_ME(rectObj, getCenter, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(rectObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(rectObj, getCenter, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(rectObj, __get, rect___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(rectObj, __set, rect___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(rectObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(rectObj, set, __set, rect___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(rectObj, draw, rect_draw_args, ZEND_ACC_PUBLIC)
   PHP_ME(rectObj, project, rect_project_args, ZEND_ACC_PUBLIC)
   PHP_ME(rectObj, setExtent, rect_setExtent_args, ZEND_ACC_PUBLIC)
@@ -365,6 +365,29 @@ static void mapscript_rect_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_rect_clone_object(zend_object *zobj_old)
+{
+  php_rect_object *php_rect_old, *php_rect_new;
+  zend_object* zobj_new;
+
+  php_rect_old = MAPSCRIPT_OBJ_Z(php_rect_object, zobj_old);
+
+  zobj_new = mapscript_rect_create_object(mapscript_ce_rect);
+  php_rect_new = MAPSCRIPT_OBJ_Z(php_rect_object, zobj_new);
+
+  zend_objects_clone_members(&php_rect_new->zobj, &php_rect_old->zobj);
+
+  if ((php_rect_new->rect = rectObj_new()) == NULL) {
+    mapscript_throw_exception("Unable to construct rectObj." TSRMLS_CC);
+    return NULL;
+  }
+  memcpy(php_rect_new->rect, php_rect_old->rect, sizeof(rectObj));
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_rect_clone_object(zval *zobj)
 {
   php_rect_object *php_rect_old, *php_rect_new;
@@ -385,6 +408,7 @@ static zend_object* mapscript_rect_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(rect)
 {

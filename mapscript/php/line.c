@@ -331,7 +331,7 @@ PHP_METHOD(lineObj, set)
 /* }}} */
 
 zend_function_entry line_functions[] = {
-  PHP_ME(lineObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(lineObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(lineObj, __get, line___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(lineObj, __set, line___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(lineObj, add, line_add_args, ZEND_ACC_PUBLIC)
@@ -394,6 +394,25 @@ static void mapscript_line_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_line_clone_object(zend_object *zobj_old)
+{
+  php_line_object *php_line_old, *php_line_new;
+  zend_object* zobj_new;
+
+  php_line_old = MAPSCRIPT_OBJ_Z(php_line_object, zobj_old);
+
+  zobj_new = mapscript_line_create_object(mapscript_ce_line);
+  php_line_new = MAPSCRIPT_OBJ_Z(php_line_object, zobj_new);
+
+  zend_objects_clone_members(&php_line_new->zobj, &php_line_old->zobj);
+
+  php_line_new->line = lineObj_clone(php_line_old->line);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_line_clone_object(zval *zobj)
 {
   php_line_object *php_line_old, *php_line_new;
@@ -410,6 +429,7 @@ static zend_object* mapscript_line_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(line)
 {

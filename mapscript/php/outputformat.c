@@ -271,11 +271,11 @@ zend_function_entry outputformat_functions[] = {
   PHP_ME(outputFormatObj, __construct, outputformat___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(outputFormatObj, __get, outputformat___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(outputFormatObj, __set, outputformat___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(outputFormatObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(outputFormatObj, set, __set, outputformat___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(outputFormatObj, setOption, outputformat_setOption_args, ZEND_ACC_PUBLIC)
   PHP_ME(outputFormatObj, getOption, outputformat_getOption_args, ZEND_ACC_PUBLIC)
   PHP_ME(outputFormatObj, getOptionByIndex, outputformat_getOptionByIndex_args, ZEND_ACC_PUBLIC)
-  PHP_ME(outputFormatObj, validate, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(outputFormatObj, validate, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

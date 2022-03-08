@@ -48,7 +48,7 @@
 mapObj *mapObj_new(char *filename, char *new_path)
 {
   if(filename && strlen(filename))
-    return msLoadMap(filename, new_path, NULL);
+    return msLoadMap(filename, new_path);
   else { /* create an empty map, no layers etc... */
     return msNewMapObj();
   }
@@ -508,7 +508,7 @@ layerObj *layerObj_clone(layerObj *layer)
 
 int layerObj_updateFromString(layerObj *self, char *snippet)
 {
-  return msUpdateLayerFromString(self, snippet);
+  return msUpdateLayerFromString(self, snippet, MS_FALSE);
 }
 
 char *layerObj_convertToString(layerObj *self)
@@ -901,7 +901,7 @@ labelObj *labelObj_clone(labelObj *label)
 
 int labelObj_updateFromString(labelObj *self, char *snippet)
 {
-  return msUpdateLabelFromString(self, snippet);
+  return msUpdateLabelFromString(self, snippet, MS_FALSE);
 }
 
 char *labelObj_convertToString(labelObj *self)
@@ -956,7 +956,7 @@ char *labelObj_getTextString(labelObj *self)
  **********************************************************************/
 int legendObj_updateFromString(legendObj *self, char *snippet)
 {
-  return msUpdateLegendFromString(self, snippet);
+  return msUpdateLegendFromString(self, snippet, MS_FALSE);
 }
 
 char *legendObj_convertToString(legendObj *self)
@@ -969,7 +969,7 @@ char *legendObj_convertToString(legendObj *self)
  **********************************************************************/
 int queryMapObj_updateFromString(queryMapObj *self, char *snippet)
 {
-  return msUpdateQueryMapFromString(self, snippet);
+  return msUpdateQueryMapFromString(self, snippet, MS_FALSE);
 }
 
 char *queryMapObj_convertToString(queryMapObj *self)
@@ -983,7 +983,7 @@ char *queryMapObj_convertToString(queryMapObj *self)
 
 int referenceMapObj_updateFromString(referenceMapObj *self, char *snippet)
 {
-  return msUpdateReferenceMapFromString(self, snippet);
+  return msUpdateReferenceMapFromString(self, snippet, MS_FALSE);
 }
 
 char *referenceMapObj_convertToString(referenceMapObj *self)
@@ -997,7 +997,7 @@ char *referenceMapObj_convertToString(referenceMapObj *self)
 
 int scalebarObj_updateFromString(scalebarObj *self, char *snippet)
 {
-  return msUpdateScalebarFromString(self, snippet);
+  return msUpdateScalebarFromString(self, snippet, MS_FALSE);
 }
 
 char *scalebarObj_convertToString(scalebarObj *self)
@@ -1011,7 +1011,7 @@ char *scalebarObj_convertToString(scalebarObj *self)
 
 int webObj_updateFromString(webObj *self, char *snippet)
 {
-  return msUpdateWebFromString(self, snippet);
+  return msUpdateWebFromString(self, snippet, MS_FALSE);
 }
 
 char *webObj_convertToString(webObj *self)
@@ -1062,7 +1062,7 @@ labelObj *classObj_getLabel(classObj *self, int i)   // returns an EXISTING labe
 
 int classObj_updateFromString(classObj *self, char *snippet)
 {
-  return msUpdateClassFromString(self, snippet);
+  return msUpdateClassFromString(self, snippet, MS_FALSE);
 }
 
 char *classObj_convertToString(classObj *self)
@@ -1768,7 +1768,7 @@ styleObj *styleObj_label_new(labelObj *label, styleObj *style)
 
 int styleObj_updateFromString(styleObj *self, char *snippet)
 {
-  return msUpdateStyleFromString(self, snippet);
+  return msUpdateStyleFromString(self, snippet, MS_FALSE);
 }
 
 char *styleObj_convertToString(styleObj *self)

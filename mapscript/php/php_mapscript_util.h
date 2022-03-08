@@ -228,6 +228,20 @@ static zend_always_inline zend_bool zval_set_isref_to_p(zval* pz, zend_bool isre
     parent.child_ptr = NULL;
 #endif
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+
+#define MAPSCRIPT_CALL_METHOD_1(zobj, function_name, retval, arg1) \
+    zend_call_method_with_1_params((zend_object *) Z_OBJ(zobj), Z_OBJCE(zobj), NULL, function_name, &retval, arg1);
+
+#define MAPSCRIPT_CALL_METHOD_2(zobj, function_name, retval, arg1, arg2) \
+    zend_call_method_with_2_params((zend_object *) Z_OBJ(zobj), Z_OBJCE(zobj), NULL, function_name, &retval, arg1, arg2);
+
+#define MAPSCRIPT_CALL_METHOD_2_P(zobj, function_name, retval, arg1, arg2) \
+    zend_call_method_with_2_params((zend_object *) Z_OBJ_P(zobj), Z_OBJCE_P(zobj), NULL, function_name, &retval, arg1, arg2);
+
+#else
+
 #if PHP_VERSION_ID >= 70000
 
 #define MAPSCRIPT_CALL_METHOD_1(zobj, function_name, retval, arg1) \
@@ -249,6 +263,8 @@ static zend_always_inline zend_bool zval_set_isref_to_p(zval* pz, zend_bool isre
 
 #define MAPSCRIPT_CALL_METHOD_2_P(zobj, function_name, retval, arg1, arg2) \
     MAPSCRIPT_CALL_METHOD_2(zobj, function_name, retval, arg1, arg2) 
+
+#endif
 
 #endif /* PHP_VERSION_ID */
 

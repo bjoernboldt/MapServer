@@ -158,10 +158,10 @@ PHP_METHOD(errorObj, next)
 /* }}} */
 
 zend_function_entry error_functions[] = {
-  PHP_ME(errorObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(errorObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(errorObj, __get, error___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(errorObj, __set, error___set_args, ZEND_ACC_PUBLIC)
-  PHP_ME(errorObj, next, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(errorObj, next, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };

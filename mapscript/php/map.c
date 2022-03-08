@@ -3287,7 +3287,7 @@ PHP_METHOD(mapObj, removeLayer)
 
 #ifdef disabled
 /* {{{ proto int map.getLabel().
-   Return the next label from the map���s labelcache, allowing iteration
+   Return the next label from the map   s labelcache, allowing iteration
    over labels. Return NULL when the labelcache is empty. */
 PHP_METHOD(mapObj, getLabel)
 {
@@ -3423,16 +3423,16 @@ zend_function_entry map_functions[] = {
   PHP_ME(mapObj, __construct, map___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(mapObj, __get, map___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, __set, map___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(mapObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(mapObj, set, __set, map___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, getSymbolByName, map_getSymbolByName_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, getSymbolObjectById, map_getSymbolObjectById_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, prepareQuery, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, prepareImage, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, draw, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, drawQuery, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, drawLegend, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, drawReferenceMap, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, drawScaleBar, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, prepareQuery, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, prepareImage, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, draw, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, drawQuery, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, drawLegend, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, drawReferenceMap, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, drawScaleBar, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, embedLegend, map_embedLegend_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, embedScaleBar, map_embedScaleBar_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, drawLabelCache, map_drawLabelCache_args, ZEND_ACC_PUBLIC)
@@ -3459,24 +3459,24 @@ zend_function_entry map_functions[] = {
   PHP_ME(mapObj, loadQuery, map_loadQuery_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, freeQuery, map_freeQuery_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, save, map_save_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getProjection, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getProjection, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setProjection, map_setProjection_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setWKTProjection, map_setWKTProjection_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, getMetaData, map_getMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setMetaData, map_setMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, removeMetaData, map_removeMetaData_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, getLayersIndexByGroup, map_getLayersIndexByGroup_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getAllGroupNames, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getAllLayerNames, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getAllGroupNames, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getAllLayerNames, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, moveLayerUp, map_moveLayerUp_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, moveLayerDown, map_moveLayerDown_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getLayersDrawingOrder, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getLayersDrawingOrder, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setLayersDrawingOrder, map_setLayersDrawingOrder_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, processTemplate, map_processTemplate_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, processQueryTemplate, map_processQueryTemplate_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, processLegendTemplate, map_processLegendTemplate_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setSymbolSet, map_setSymbolSet_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getNumSymbols, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getNumSymbols, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setFontSet, map_setFontSet_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, selectOutputFormat, map_selectOutputFormat_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, appendOutputFormat, map_appendOutputFormat_args, ZEND_ACC_PUBLIC)
@@ -3486,10 +3486,10 @@ zend_function_entry map_functions[] = {
   PHP_ME(mapObj, loadMapContext, map_loadMapContext_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, applySLD, map_applySLD_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, applySLDURL, map_applySLDURL_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, generateSLD, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, generateSLD, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, getConfigOption, map_getConfigOption_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, setConfigOption, map_setConfigOption_args, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, applyConfigOptions, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, applyConfigOptions, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, loadOwsParameters, map_loadOwsParameters_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, owsDispatch, map_owsDispatch_args, ZEND_ACC_PUBLIC)
   PHP_ME(mapObj, insertLayer, map_insertLayer_args, ZEND_ACC_PUBLIC)
@@ -3497,9 +3497,9 @@ zend_function_entry map_functions[] = {
 #ifdef disabled
   PHP_ME(mapObj, getLabel, map_getLabel_args, ZEND_ACC_PUBLIC)
 #endif
-  PHP_ME(mapObj, convertToString, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, getLatLongExtent, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(mapObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(mapObj, convertToString, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, getLatLongExtent, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(mapObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -3638,6 +3638,25 @@ static void mapscript_map_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_map_clone_object(zend_object *zobj_old)
+{
+  php_map_object *php_map_old, *php_map_new;
+  zend_object* zobj_new;
+
+  php_map_old = MAPSCRIPT_OBJ_Z(php_map_object, zobj_old);
+
+  zobj_new = mapscript_map_create_object(mapscript_ce_map);
+  php_map_new = MAPSCRIPT_OBJ_Z(php_map_object, zobj_new);
+
+  zend_objects_clone_members(&php_map_new->zobj, &php_map_old->zobj);
+
+  php_map_new->map = mapObj_clone(php_map_old->map);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_map_clone_object(zval *zobj)
 {
   php_map_object *php_map_old, *php_map_new;
@@ -3654,6 +3673,7 @@ static zend_object* mapscript_map_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(map)
 {

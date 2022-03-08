@@ -628,17 +628,17 @@ zend_function_entry style_functions[] = {
   PHP_ME(styleObj, __construct, style___construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(styleObj, __get, style___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, __set, style___set_args, ZEND_ACC_PUBLIC)
-  PHP_MALIAS(styleObj, set, __set, NULL, ZEND_ACC_PUBLIC)
+  PHP_MALIAS(styleObj, set, __set, style___set_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, updateFromString, style_updateFromString_args, ZEND_ACC_PUBLIC)
-  PHP_ME(styleObj, convertToString, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(styleObj, convertToString, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, setBinding, style_setBinding_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, getBinding, style_getBinding_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, removeBinding, style_removeBinding_args, ZEND_ACC_PUBLIC)
-  PHP_ME(styleObj, getGeomTransform, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(styleObj, getGeomTransform, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, setGeomTransform, style_setGeomTransform_args, ZEND_ACC_PUBLIC)
   PHP_ME(styleObj, setPattern, style_setPattern_args, ZEND_ACC_PUBLIC)
-  PHP_ME(styleObj, getPatternArray, NULL, ZEND_ACC_PUBLIC)
-  PHP_ME(styleObj, free, NULL, ZEND_ACC_PUBLIC) {
+  PHP_ME(styleObj, getPatternArray, no_args, ZEND_ACC_PUBLIC)
+  PHP_ME(styleObj, free, no_args, ZEND_ACC_PUBLIC) {
     NULL, NULL, NULL
   }
 };
@@ -691,6 +691,25 @@ static void mapscript_style_free_object(zend_object *object)
   zend_object_std_dtor(object);
 }
 
+//PHP8
+#if PHP_VERSION_ID >= 80000
+static zend_object* mapscript_style_clone_object(zend_object *zobj_old)
+{
+  php_style_object *php_style_old, *php_style_new;
+  zend_object* zobj_new;
+
+  php_style_old = MAPSCRIPT_OBJ_Z(php_style_object, zobj_old);
+
+  zobj_new = mapscript_style_create_object(mapscript_ce_style);
+  php_style_new = MAPSCRIPT_OBJ_Z(php_style_object, zobj_new);
+
+  zend_objects_clone_members(&php_style_new->zobj, &php_style_old->zobj);
+
+  php_style_new->style = styleObj_clone(php_style_old->style);
+
+  return zobj_new;
+}
+#else
 static zend_object* mapscript_style_clone_object(zval *zobj)
 {
   php_style_object *php_style_old, *php_style_new;
@@ -707,6 +726,7 @@ static zend_object* mapscript_style_clone_object(zval *zobj)
 
   return zobj_new;
 }
+#endif
 
 PHP_MINIT_FUNCTION(style)
 {

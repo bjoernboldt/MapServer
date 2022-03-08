@@ -382,10 +382,10 @@ PHP_METHOD(OWSRequestObj, getValueByName)
 /* }}} */
 
 zend_function_entry owsrequest_functions[] = {
-  PHP_ME(OWSRequestObj, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+  PHP_ME(OWSRequestObj, __construct, no_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
   PHP_ME(OWSRequestObj, __get, owsrequest___get_args, ZEND_ACC_PUBLIC)
   PHP_ME(OWSRequestObj, __set, owsrequest___set_args, ZEND_ACC_PUBLIC)
-  PHP_ME(OWSRequestObj, loadParams, NULL, ZEND_ACC_PUBLIC)
+  PHP_ME(OWSRequestObj, loadParams, no_args, ZEND_ACC_PUBLIC)
   PHP_ME(OWSRequestObj, setParameter, owsrequest_setParameter_args, ZEND_ACC_PUBLIC)
   PHP_ME(OWSRequestObj, addParameter, owsrequest_addParameter_args, ZEND_ACC_PUBLIC)
   PHP_ME(OWSRequestObj, getName, owsrequest_getName_args, ZEND_ACC_PUBLIC)
